@@ -82,7 +82,7 @@ module Creek
               elsif node.value?
                 if shared
                   cells[cell] = @book.shared_strings.dictionary[node.value.to_i] if @book.shared_strings.dictionary.has_key? node.value.to_i
-                else
+                elsif !cell.nil?
                   cells[cell] = node.value
                 end
               end

@@ -80,3 +80,11 @@ describe 'Creek parsing a sample XLSX file' do
     rows.map{|r| r['cells']}.should == @expected_rows
   end
 end
+
+describe "Creek parsing file with malformed xml" do
+  it "Parse complete set of values without nil keys" do
+    creek = Creek::Book.new 'spec/fixtures/malformed_file_causing_nil_key_in_cells_hash.xlsx'
+    expect(creek.sheets[0].rows.first.keys).not_to include nil
+    creek.close
+  end
+end
